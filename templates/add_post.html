@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+    <h1>Add post...</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>Post</button>
+    </form>
+{% else %}
+    <h1>You are not logged in!</h1>
+    <a href="{% url 'login'%}">Login /</a>
+    <a href="{% url 'register'%}">Register</a>
+{% endif%}    

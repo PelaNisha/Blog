@@ -1,0 +1,13 @@
+{% if user.is_authenticated %}
+    <h1>Delete post...</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <strong>Are you sure?</strong>
+        <br>
+        <button>Delete</button>
+    </form>
+{% else %}
+    <h1>You are not logged in!</h1>
+    <a href="{% url 'login'%}">Login /</a>
+    <a href="{% url 'register'%}">Register</a>
+{%endif %}    
