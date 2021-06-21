@@ -1,9 +1,18 @@
-<h1>{{ post.titile }}</h1>
-<small>
-    By:{{post.author}} - {{post.post_date}}<small><br><a href="{% url 'update_post' post.pk %}">Edit</a></small>
-    <small><a href="{% url 'delete_post' post.pk %}">Delete</a></small>
-</small>
-<hr>
-<br>
-{{post.body}}
-<a href="{% url 'home' %}">Back</a>
+{% extends "base.html" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block content %}
+    <h1>{{ post.titile }}</h1>
+    <small>
+        By: {{post.author}} - {{post.post_date}}<small><br>
+    </small>
+    <hr>
+    <br>
+    {{post.body|safe}}
+    <br>
+    <br>
+    <a href="{% url 'update_post' post.pk %}">Edit</a></small>
+        <small><a href="{% url 'delete_post' post.pk %}" >Delete</a></small>
+    <!-- <a href="{% url 'home' %}">Back</a> -->
+{% endblock %}
