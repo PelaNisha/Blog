@@ -3,12 +3,12 @@
 {% block title %}Login {% endblock %}
 
 {% block content %}
-<h1 class="fw-light">Login page</h1>
-    <div class = 'container form-group'>
-        <form action="" method="POST" autocomplete="off" >
+    <h1 class="fw-light">Login page</h1>
+        <div class = 'container form-group'>
+            <form action="" method="POST" autocomplete="off">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="btn btn-outline-info" >Login</button>
-        </form>
-    </div> 
+            </form>
+        </div> 
 {% endblock %}
