@@ -4,13 +4,16 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1 class="fw-light">Delete post...</h1>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <strong>Are you sure?</strong>
-            <br>
-            <button class="btn btn-outline-danger" >Delete</button>
-        </form>
+        {% if user.id == post.author.id%}
+            <h1 class="fw-light">Delete post...</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <strong>Are you sure?</strong>
+                <br>
+                <button class="btn btn-outline-danger" >Delete</button>
+            </form>
+        {% else %}    
+            <h1>You are not allowed!</h1>
     {% else %}
         <h1>You are not logged in!</h1>
         <a href="{% url 'login'%}">Login /</a>

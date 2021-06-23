@@ -5,14 +5,17 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <h1 class="fw-light">Update post...</h1>
-            <div class = 'form-group'>
-                <form action="" method="POST" autocomplete="off">
-                    {% csrf_token %}
-                    {{form.as_p}}
-                    <button class="btn btn-outline-info" >Update</button>
-                </form>
-            </div>    
+         {% if user.id == post.author.id%}
+            <h1 class="fw-light">Update post...</h1>
+                <div class = 'form-group'>
+                    <form action="" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-outline-info" >Update</button>
+                    </form>
+                </div>    
+        {%else%} 
+                <h4>Yor are allowed to update anybody else's post</h4>
     {% else %}
         <h1>You are not logged in!</h1>
         <!-- <a href="{% url 'login'%}">Login /</a>

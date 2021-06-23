@@ -1,9 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import post, Category
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import PostForm, UpdateForm
+from django.http import HttpResponseRedirect
 # Create your views here.
+
+def LikeView(request , pk):
+    Post = get_object_or_404(post, id=request.POST.get('post_id'))
+    liked = False
+    if Post.likes.filter(id= request.user.id).exists():
+        Post.likes.remove(request.user)
+        liked = False
+    else:
+        Post.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('article_details', args = [str(pk)]))
+
+
 class HomeView(ListView):
     model = post
     template_name = 'home.html'
@@ -12,6 +26,21 @@ class HomeView(ListView):
 class ArticleDetailView(DetailView):
     model = post
     template_name = 'article_details.html'    
+
+
+    def get_context_data(self, *args,**kwargs):
+        cat_menu = Category.objects.all()
+        context = super(ArticleDetailView, self).get_context_data(*args,**kwargs)
+        
+        stuff = get_object_or_404(post, id = self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+        liked = False
+        if stuff.likes.filter(id  =self.request.user.id).exists():
+            liked = True
+        context['total_likes'] = total_likes
+        context['cat_menu'] = cat_menu
+        context['liked'] = liked
+        return context
 
 
 class AddPostView(CreateView):
@@ -28,8 +57,14 @@ class AddCategoryView(CreateView):
     fields = '__all__'    
 
 def CategoryView(request , cats):
-    category_posts = post.objects.filter(Category = cats)
-    return render(request, 'categories.html',{'cats':cats.title(), 'category_posts':category_posts})
+    category_posts = post.objects.filter(Category = cats.replace('-', ''))
+    return render(request, 'categories.html',{'cats':cats.title().replace('-', ''), 'category_posts':category_posts})
+
+def CategoryListView(request ):
+    cat_menu_list = Category.objects.all()
+    return render(request, 'category_list.html',{'cat_menu_list':cat_menu_list})
+
+
 
 class UpdatePostView(UpdateView):
     model = post
