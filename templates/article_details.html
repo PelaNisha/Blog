@@ -12,7 +12,7 @@
     {{post.body|safe}}
     <br>
     <br>
-     {% if user.id == post.author.id%}
+    {% if user.id == post.author.id%}
         <a  class="link-info" href="{% url 'update_post' post.pk %}">Edit</a></small>
         <small><a  class="link-info"href="{% url 'delete_post' post.pk %}" >Delete</a></small>
     <!-- <a href="{% url 'home' %}">Back</a> -->
@@ -25,11 +25,14 @@
         {% if liked %}
             <hr>
             <button type="submit" name="post_id", value="{{post.id}}", class="btn btn-warning btn-sm">UnLike</button>-{{total_likes}} likes
-        </form>
+        
         {% else %}
             <hr>
             <button type="submit" name="post_id", value="{{post.id}}", class="btn btn-danger btn-sm">Like</button>-{{total_likes}} likes
-        </form>
+        
         {% endif%}
+    </form>
+    {% else %}
+    <small><a class="link-info" href="{% url 'login'%}">Login</a> to like</small>
     {% endif%}
 {% endblock %}
