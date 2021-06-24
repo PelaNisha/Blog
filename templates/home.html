@@ -14,12 +14,13 @@
                         <small><a href="{% url 'update_post' post.pk %}" class="link-info">Edit</a></small>
                         <small><a href="{% url 'delete_post' post.pk %}" class="link-info">Delete</a></small>
                         <br>
-                       {{post.body|safe|slice:':100'}}
+                        {{post.snippet}}  
                     {% endif%}
             {%else%}
                 <a href="{% url 'article_details' post.pk %}">{{post.title}}</a>- <a href="{% url 'category' post.Category %}">({{post.Category|slugify}})</a> - {{post.author}} - {{post.post_date}}
                     <br>
-                {{post.body|slice:':200'|safe}}
+                {{post.snippet}}  
+               
             {% endif %}    
         </li>
         {% endfor %}
