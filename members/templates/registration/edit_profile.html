@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+    <h1>Register</h1>
+        <div class = 'container form-group' >
+            <form action="" method="POST" autocomplete="off">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-outline-info">Save</button>
+            </form>
+        </div>    
+{% endblock %}

@@ -17,7 +17,7 @@
                         {{post.snippet}}  
                     {% endif%}
             {%else%}
-                <a href="{% url 'article_details' post.pk %}">{{post.title}}</a>- <a href="{% url 'category' post.Category %}">({{post.Category|slugify}})</a> - {{post.author}} - {{post.post_date}}
+                <a href="{% url 'article_details' post.pk %}">{{post.title}}</a>- <a href="{% url 'category' post.Category %}">({{post.Category|slugify}})</a> - {{post.author}}- {{post.post_date}}
                     <br>
                 {{post.snippet}}  
                
