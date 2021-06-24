@@ -14,6 +14,7 @@
             </form>
         {% else %}    
             <h1>You are not allowed!</h1>
+        {% endif %}    
     {% else %}
         <h1>You are not logged in!</h1>
         <a href="{% url 'login'%}">Login /</a>
