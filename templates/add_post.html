@@ -8,7 +8,7 @@
     
         <h1 class="fw-light mx-4" >Add post...</h1>
             <div class = 'container form-group' >
-                    <form action="" method="POST" autocomplete="off">
+                    <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{form.media}}
                         {{form.as_p}}
