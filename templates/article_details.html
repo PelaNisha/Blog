@@ -35,6 +35,34 @@
         
         {% endif%}
     </form>
+    <br>
+    <br>
+    <div class="card border-info mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+                <p class="small text-muted">
+                    {% if post.author.profile.facebook_url %}
+                        <a href="{{post.author.profile.facebook_url}}"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %} 
+                    {% if post.author.profile.instagram_url %}
+                        <a href="{{post.author.profile.instagram_url}}"><i class="fab fa-instagram"></i></a>
+                    {% endif %} 
+                    {% if post.author.profile.twitter_url %}
+                        <a href="{{post.author.profile.twitter_url}}"><i class="fab fa-twitter"></i></a>
+                    {% endif %}    
+             
+                 </p>
+              <h5 class="card-title">{{ post.author}}</h5>
+              <p class="card-text">{{ post.author.profile.bio}}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
     {% else %}
     <small><a class="link-info" href="{% url 'login'%}">Login</a> to like</small>
     {% endif%}
