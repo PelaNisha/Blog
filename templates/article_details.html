@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{post.title}}{% endblock %}
 
@@ -39,10 +40,16 @@
     <br>
     <div class="card border-info mb-3" style="max-width: 540px;">
         <div class="row g-0">
-          <div class="col-md-2">
-            <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-10">
+          <div class="col-md-4">
+            {% if post.author.profile.facebook_url %}
+                <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="..." , height = 200px >
+            {% else %}
+            <img src="{% static 'theblog/images/dp.jpg'  %}" class="img-fluid rounded-start" alt="...">
+            {% endif %}
+            
+          
+            </div>
+          <div class="col-md-8">
             <div class="card-body">
                 <p class="small text-muted">
                     {% if post.author.profile.facebook_url %}
