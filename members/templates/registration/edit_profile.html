@@ -3,10 +3,14 @@
 {% block title %}Edit profile{% endblock %}
 
 {% block content %}
-    <h1>Register</h1>
+    <h1>Edit profile</h1>
+
         <div class = 'container form-group' >
+            {{user.profile.bio}}
+            
             <form action="" method="POST" autocomplete="off">
                 {% csrf_token %}
+           
                 {{form.as_p}}
                 <button class="btn btn-outline-info">Save</button>
             </form>
