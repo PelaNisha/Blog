@@ -8,6 +8,14 @@ from django.views.generic import DetailView
 from theblog.models import Profile
 
 # Create your views here.
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    fields = ['bio','profile_pic','facebook_url', 'instagram_url','twitter_url']
+    template_name = 'registration/edit_profile_page.html'
+    # success_url = reverse_lazy('show_profile_page')
+
+
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'

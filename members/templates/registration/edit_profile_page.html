@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile Page {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    
+        <h1 class="fw-light mx-4" >Edit...</h1>
+            <div class = 'container form-group' >
+                    <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-outline-info" >Update</button>
+                    </form>
+            </div>
+            <script>
+                var name = "{{user.id}}";
+                document.getElementById('elder').value=name;
+            </script>         
+            {% else %}
+                <h1>You are not logged in!</h1>
+           
+            
+            {% endif%} 
+      
+{% endblock %}
