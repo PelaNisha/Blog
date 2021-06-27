@@ -1,9 +1,47 @@
 {% extends "base.html" %}
-{% block title %}Home {% endblock %}
+{% load static %}
+{% block title %}Profile{% endblock %}
 
 
 {% block content %}
-    <h1 class="fw-light">User profile</h1>
-    {{page_user}}
+    <h3 class="fw-light">{{page_user}}</h3>
+    <br><br>
+    <div class="card border-info mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+
+            {% if page_user.facebook_url %}
+                <img src="{{ page_user.profile_pic.url}}" class="img-fluid rounded-start" alt="..." , height = 200px >
+            {% else %}
+            <img src="{% static 'theblog/images/dp.jpg'  %}" class="img-fluid rounded-start" alt="...">
+            {% endif %}
+            
+          
+            </div>
+          <div class="col-md-8">
+            <div class="card-body">
+                <p class="small text-muted">
+                
+
+                    {% if page_user.facebook_url %}
+                    
+                        <a href="{{page_user.facebook_url}}"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %} 
+                    {% if page_user.instagram_url %}
+                        <a href="{{page_user.instagram_url}}"><i class="fab fa-instagram"></i></a>
+                    {% endif %} 
+                    {% if page_user.twitter_url %}
+                        <a href="{{page_user.twitter_url}}"><i class="fab fa-twitter"></i></a>
+                    {% endif %}    
+             
+                 </p>
+              <h5 class="card-title">{{ page_user.author}}</h5>
+              <p class="card-text">{{ page_user.bio}}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 {% endblock %}

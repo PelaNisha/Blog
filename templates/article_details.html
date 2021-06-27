@@ -34,19 +34,22 @@
             <hr>
             <button type="submit" name="post_id", value="{{post.id}}", class="btn btn-danger btn-sm">Like</button>-{{total_likes}} likes
         
-        {% endif%}
-    </form>
+    {% endif%}
+</form>
     <br>
     <br>
+   
+    {% else %}
+    <small><a class="link-info" href="{% url 'login'%}">Login</a> to like</small>
+    {% endif%}
     <div class="card border-info mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile</a>
 
             {% if post.author.profile.facebook_url %}
                 <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="..." , height = 200px >
             {% else %}
-            <img src="{% static 'theblog/images/dp.jpg'  %}" class="img-fluid rounded-start" alt="...">
+                <img src="{% static 'theblog/images/dp.jpg'  %}" class="img-fluid rounded-start" alt="...">
             {% endif %}
             
           
@@ -54,7 +57,10 @@
           <div class="col-md-8">
             <div class="card-body">
                 <p class="small text-muted">
+                <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile</a>
+
                     {% if post.author.profile.facebook_url %}
+                    
                         <a href="{{post.author.profile.facebook_url}}"><i class="fab fa-facebook-f"></i></a>
                     {% endif %} 
                     {% if post.author.profile.instagram_url %}
@@ -72,7 +78,4 @@
           </div>
         </div>
       </div>
-    {% else %}
-    <small><a class="link-info" href="{% url 'login'%}">Login</a> to like</small>
-    {% endif%}
 {% endblock %}
