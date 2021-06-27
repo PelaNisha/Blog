@@ -41,6 +41,8 @@
     <div class="card border-info mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
+            <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile</a>
+
             {% if post.author.profile.facebook_url %}
                 <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start" alt="..." , height = 200px >
             {% else %}
